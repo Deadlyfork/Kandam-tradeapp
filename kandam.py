@@ -13,7 +13,11 @@ class LoginScreen(GridLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.cols = 2
-        
+       
+        self.add_widget(Label(text='Name'))
+        self.Name = TextInput(multiline= False)
+        self.add_widget(self.Name) 
+
         self.add_widget(Label(text='Email'))
         self.email = TextInput(multiline= False)
         self.add_widget(self.email)
