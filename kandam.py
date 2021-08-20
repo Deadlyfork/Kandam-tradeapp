@@ -23,7 +23,6 @@ class LoginScreen(GridLayout):
         self.add_widget(self.password)
         
         self.submit = Button(text='Submit')
-        self.submit.bind(on_press=submit_button)
         self.add_widget(self.submit)
 
     def submit_button(self):
