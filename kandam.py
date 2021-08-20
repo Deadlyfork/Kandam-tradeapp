@@ -40,10 +40,10 @@ class LoginScreen(GridLayout):
         super().__init__(**kwargs)
         self.cols = 2
 
-       
+        #Inputting name 
         self.add_widget(Label(text='Name'))
-        self.Name = TextInput(multiline= False)
-        self.add_widget(self.Name) 
+        self.name = TextInput(multiline= False)
+        self.add_widget(self.name) 
         
         #Inputing email 
         self.add_widget(Label(text='Email'))
@@ -62,6 +62,7 @@ class LoginScreen(GridLayout):
 
     def submit_button(self, instance):
         #After submition
+        name = self.name.text
         email = self.email.text
         password = self.password.text
         info = ';)' 
