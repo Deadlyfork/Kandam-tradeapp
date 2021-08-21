@@ -19,7 +19,8 @@ class Menu(GridLayout):
 
         self.search_input = TextInput(width=Window.size[0]*0.8, size_hint_x=None, multiline=False)
         self.search_button = Button(text='Search')
-        
+        self.search_button.bind(on_press=self.search_offers)
+
         self.home_page = Label(height=Window.size[1]*0.9, size_hint_y=None)
         
         top_line = GridLayout(cols=2)
@@ -27,6 +28,10 @@ class Menu(GridLayout):
         top_line.add_widget(self.search_button)
         self.add_widget(top_line)
         self.add_widget(self.home_page)
+
+    def search_offers(self, _): 
+        #hannan
+        pass
 
 class InfoPage(GridLayout):
     # SCREEN 2
