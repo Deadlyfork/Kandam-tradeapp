@@ -7,13 +7,19 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.uix.textinput import TextInput
 from kivy.uix.button import Button
 from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.clock import Clock
 
 class Menu(GridLayout):
     #Screen 3
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.rows = 2
-        
+        self.cols = 2
+
+
+        #Inputing search phrase (mod)
+        self.add_widget(Label(text='Search'))
+        self.search = TextInput(multiline= False)
+        self.add_widget(self.search) 
 
 class InfoPage(GridLayout):
     # SCREEN 2
@@ -32,18 +38,16 @@ class InfoPage(GridLayout):
         #For the message not to go beyond the window
         self.message.text_size = (self.message.width*0.9, None)
 
-
-
 class LoginScreen(GridLayout):
     # LOGIN SCREEN / SCREEN 1
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.cols = 2
 
-       
+        #Inputing name
         self.add_widget(Label(text='Name'))
-        self.Name = TextInput(multiline= False)
-        self.add_widget(self.Name) 
+        self.name = TextInput(multiline= False)
+        self.add_widget(self.name) 
         
         #Inputing email 
         self.add_widget(Label(text='Email'))
@@ -60,14 +64,17 @@ class LoginScreen(GridLayout):
         self.submit.bind(on_press=self.submit_button)
         self.add_widget(self.submit)
 
-    def submit_button(self, instance):
+    def submit_button(self, _):
         #After submition
+        name = self.name.text
         email = self.email.text
         password = self.password.text
         info = ';)' 
         trade_app.info_page.update_info(info)       
         trade_app.screen_manager.current = 'info'
-
+        Clock.schedule_once(self.change_screen, 1)
+    def change_screen(self, _):
+        trade_app.screen_manager.current = 'menu'
 class kandam(App):
     # BASE CLASS
     def build(self):
