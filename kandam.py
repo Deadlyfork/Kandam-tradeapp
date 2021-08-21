@@ -45,6 +45,7 @@ class LoginScreen(GridLayout):
         self.cols = 2
 
         #Inputing name
+
         self.add_widget(Label(text='Name'))
         self.name = TextInput(multiline= False)
         self.add_widget(self.name) 
