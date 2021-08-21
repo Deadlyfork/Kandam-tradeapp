@@ -8,18 +8,25 @@ from kivy.uix.textinput import TextInput
 from kivy.uix.button import Button
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.clock import Clock
+from kivy.core.window import Window
 
 class Menu(GridLayout):
     #Screen 3
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.cols = 2
+        self.cols = 1
+        self.rows = 2
 
-
-        #Inputing search phrase (mod)
-        self.add_widget(Label(text='Search'))
-        self.search = TextInput(multiline= False)
-        self.add_widget(self.search) 
+        self.search_input = TextInput(width=Window.size[0]*0.8, size_hint_x=None, multiline=False)
+        self.search_button = Button(text='Search')
+        
+        self.home_page = Label(height=Window.size[1]*0.9, size_hint_y=None)
+        
+        top_line = GridLayout(cols=2)
+        top_line.add_widget(self.search_input)
+        top_line.add_widget(self.search_button)
+        self.add_widget(top_line)
+        self.add_widget(self.home_page)
 
 class InfoPage(GridLayout):
     # SCREEN 2
