@@ -10,8 +10,7 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.clock import Clock
 from kivy.core.window import Window
 
-
-class SellScreen(GridLayout): #need to add - text input, label 
+class OfferScreen(GridLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.cols = 1
@@ -23,19 +22,7 @@ class SellScreen(GridLayout): #need to add - text input, label
     def submit_trade_pressed(self, _):
         trade_app.screen_manager.current = 'menu'
 
-class BuyScreen(GridLayout):  #need to add - text input, label  
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        self.cols = 1
-
-        self.submit_trade = Button(text='Submit Trade')
-        self.add_widget(self.submit_trade)
-        self.submit_trade.bind(on_press=self.submit_trade_pressed)
-
-    def submit_trade_pressed(self, _):
-        trade_app.screen_manager.current = 'menu'
-
-class WoodScreen(GridLayout):
+class ItemScreen(GridLayout):
     #Items screen
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -50,10 +37,10 @@ class WoodScreen(GridLayout):
         self.buy_button.bind(on_press=self.buy_pressed)
 
     def sell_pressed(self, _):
-        trade_app.screen_manager.current = 'sell'
+        trade_app.screen_manager.current = 'offer'
     
     def buy_pressed(self, _):
-        trade_app.screen_manager.current = 'buy'
+        trade_app.screen_manager.current = 'offer'
 
 class MenuScreen(GridLayout):
     #Screen 3
@@ -77,12 +64,7 @@ class MenuScreen(GridLayout):
         self.add_widget(self.home_page)
 
     def all_items_search(self, _): 
-        search_phrase = str(self.search_input.text.lower())
-
-        try:
-            trade_app.screen_manager.current = search_phrase
-        except:
-            trade_app.screen_manager.current = 'menu'
+        search_phrase = self.search_input.text.lower()
         
 class InfoPage(GridLayout):
     # SCREEN 2
@@ -163,24 +145,17 @@ class kandam(App):
         screen.add_widget(self.menu_screen)
         self.screen_manager.add_widget(screen)
 
-        #item screen 1 - wood
-        self.wood_screen = WoodScreen()
-        screen = Screen(name='wood')
-        screen.add_widget(self.wood_screen)
+        #items screen
+        self.items_screen = ItemScreen()
+        screen = Screen(name='items')
+        screen.add_widget(self.items_screen)
         self.screen_manager.add_widget(screen)
 
-        #Buy screen
-        self.buy_screen = BuyScreen()
-        screen = Screen(name='buy')
-        screen.add_widget(self.buy_screen)
+        #Offer screen
+        self.offer_screen = OfferScreen()
+        screen = Screen(name='offer')
+        screen.add_widget(self.offer_screen)
         self.screen_manager.add_widget(screen)
-
-        #Sell screen
-        self.sell_screen = SellScreen()
-        screen = Screen(name='sell')
-        screen.add_widget(self.sell_screen)
-        self.screen_manager.add_widget(screen)
-
 
         return self.screen_manager
 
