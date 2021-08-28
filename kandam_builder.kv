@@ -2,17 +2,19 @@ ScreenManagement:
     LoginPage:
     RegisterPage:
     HomePage:
+    SearchPage:
 
 <LoginPage>
     name: 'login'
     MDTextButton:
         text:'Sign-up instead?'
+        font_style: 'Button'
         pos_hint:{'top': 0.95,'right':0.95}
         on_press: app.root.current = "register"
 
     MDCard:
         orientation: 'vertical'
-        padding: 25
+        padding: 30
         spacing: 20
         size_hint: None, None
         size: 300, 370
