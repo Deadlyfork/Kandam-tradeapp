@@ -1,5 +1,107 @@
-MDScreen:
+ScreenManagement:
+    LoginPage:
+    RegisterPage:
+    HomePage:
 
-    MDLabel:
-        text: "Hello, World!"
-        halign: "center"
+<LoginPage>
+    name: 'login'
+    MDTextButton:
+        text:'Sign-up instead?'
+        pos_hint:{'top': 0.95,'right':0.95}
+        on_press: app.root.current = "register"
+
+    MDCard:
+        orientation: 'vertical'
+        padding: 25
+        spacing: 20
+        size_hint: None, None
+        size: 300, 370
+        pos_hint: {"center_x": .5, "center_y": .5}
+
+        MDLabel:
+            text: "LOGIN"
+            font_size: 40
+            adaptive_height: True
+            padding_y: 20
+            halign: 'center'        
+        
+        MDSeparator:
+            height: 1
+        
+        MDTextField:
+            id:username
+            icon_right: "account-circle-outline"
+            hint_text: "Username"
+            required: True
+            helper_text_mode: "on_error"
+            helper_text: "Required"
+            adaptive_height: True
+       
+        MDTextField:
+            icon_right: "onepassword"
+            hint_text: "Password"
+            required: True
+            helper_text_mode: "on_error"
+            helper_text: "Required"
+            adaptive_height: True
+            password: True
+        
+        MDFillRoundFlatButton:
+            text: "Sign-in"
+            pos_hint:{"center_x":0.5}
+            #temp
+            on_press: app.root.current = 'home'
+
+<RegisterPage>
+    name:"register"
+    MDCard:
+        orientation: 'vertical'
+        padding: 25
+        spacing: 20
+        size_hint: None, None
+        size: 300, 420
+        pos_hint: {"center_x": .5, "center_y": .5}
+        
+        MDLabel:
+            text: "Sign-Up"
+            font_size: 40
+            adaptive_height: True
+            padding_y: 20
+            halign: 'center'  
+
+        MDSeparator:
+            height: 1
+
+        MDTextField:
+            icon_right: "account-circle-outline"
+            hint_text: "Username"
+            required: True
+            helper_text_mode: "on_error"
+            helper_text: "Required"
+            adaptive_height: True
+
+        MDTextField:
+            icon_right: "gamepad-variant-outline"
+            hint_text: "IGN"
+            required: True
+            helper_text_mode: "on_error"
+            helper_text: "Required"
+            adaptive_height: True
+       
+        MDTextField:
+            icon_right: "onepassword"
+            hint_text: "Password"
+            required: True
+            helper_text_mode: "on_error"
+            helper_text: "Required"
+            adaptive_height: True
+            password: True
+        
+        MDFillRoundFlatButton:
+            text: "Submit"
+            pos_hint:{"center_x":0.5}
+            on_press: app.root.current = 'login'
+
+<HomePage>
+    name: 'home'
+    
