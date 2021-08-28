@@ -103,7 +103,38 @@ ScreenManagement:
             on_press: app.root.current = 'login'
 
 <HomePage>
+    
     name: 'home'
-    MDBoxLayout:
+    
+    MDGridLayout:
+        cols:1
+        rows:2
+        padding: 25
+        
         MDLabel:
-            text: 'Welcome'
+            text:'Welcome'
+            font_style: 'H3'
+            halign: 'center'
+            size_hint_y: 0.1
+        
+        MDBoxLayout:
+            spacing: 90
+            padding:20
+            size_hint_y:0.9
+            orientation:'vertical'
+            
+            MDFillRoundFlatButton:
+                pos_hint:{"center_x":0.5}
+                text: 'Search'
+            
+            MDFillRoundFlatButton:
+                pos_hint:{"center_x":0.5}
+                text: 'Register-New Trade'
+            
+            MDFillRoundFlatButton:
+                pos_hint:{"center_x":0.5}
+                text: 'Ongoing Trades'
+            
+            MDFillRoundFlatButton:
+                pos_hint:{"center_x":0.5}
+                text: 'New Offers'
