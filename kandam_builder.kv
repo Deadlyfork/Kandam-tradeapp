@@ -1,0 +1,247 @@
+ScreenManagement:
+    LoginPage:
+    RegisterPage:
+    HomePage:
+    SearchPage:
+    NewTradePage:
+
+<LoginPage>
+    name: 'login'
+    MDTextButton:
+        text:'Sign-up instead?'
+        font_style: 'Button'
+        pos_hint:{'top': 0.95,'right':0.95}
+        on_press: app.root.current = "register"
+
+    MDCard:
+        orientation: 'vertical'
+        padding: 30
+        spacing: 20
+        size_hint: None, None
+        size: 300, 370
+        pos_hint: {"center_x": .5, "center_y": .5}
+
+        MDLabel:
+            text: "LOGIN"
+            font_size: 40
+            adaptive_height: True
+            padding_y: 20
+            halign: 'center'        
+        
+        MDSeparator:
+            height: 1
+        
+        MDTextField:
+            id:username
+            icon_right: "account-circle-outline"
+            hint_text: "Username"
+            required: True
+            helper_text_mode: "on_error"
+            helper_text: "Required"
+            adaptive_height: True
+       
+        MDTextField:
+            icon_right: "onepassword"
+            hint_text: "Password"
+            required: True
+            helper_text_mode: "on_error"
+            helper_text: "Required"
+            adaptive_height: True
+            password: True
+        
+        MDFillRoundFlatButton:
+            text: "Sign-in"
+            pos_hint:{"center_x":0.5}
+            #temp
+            on_press: app.root.current = 'home'
+            
+            
+<RegisterPage>
+    name:"register"
+    MDCard:
+        orientation: 'vertical'
+        padding: 25
+        spacing: 20
+        size_hint: None, None
+        size: 300, 420
+        pos_hint: {"center_x": .5, "center_y": .5}
+        
+        MDLabel:
+            text: "Sign-Up"
+            font_size: 40
+            adaptive_height: True
+            padding_y: 20
+            halign: 'center'  
+
+        MDSeparator:
+            height: 1
+
+        MDTextField:
+            icon_right: "account-circle-outline"
+            hint_text: "Username"
+            required: True
+            helper_text_mode: "on_error"
+            helper_text: "Required"
+            adaptive_height: True
+
+        MDTextField:
+            icon_right: "gamepad-variant-outline"
+            hint_text: "IGN"
+            required: True
+            helper_text_mode: "on_error"
+            helper_text: "Required"
+            adaptive_height: True
+       
+        MDTextField:
+            icon_right: "onepassword"
+            hint_text: "Password"
+            required: True
+            helper_text_mode: "on_error"
+            helper_text: "Required"
+            adaptive_height: True
+            password: True
+        
+        MDFillRoundFlatButton:
+            text: "Submit"
+            pos_hint:{"center_x":0.5}
+            on_press: app.root.current = 'login'
+
+<HomePage>
+    
+    name: 'home'
+    
+    MDGridLayout:
+        cols:1
+        rows:2
+        padding: 25
+        
+        MDLabel:
+            text:'Welcome'
+            font_style: 'H3'
+            halign: 'center'
+            size_hint_y: 0.1
+              
+
+        MDBoxLayout:
+            spacing: 90
+            padding:20
+            size_hint_y:0.9
+            orientation:'vertical'
+            
+            MDFillRoundFlatButton:
+                pos_hint:{"center_x":0.5}
+                text: 'Search'
+                on_press: app.root.current = 'search'
+
+            MDFillRoundFlatButton:
+                pos_hint:{"center_x":0.5}
+                text: 'Register-New Trade'
+                on_press: app.root.current = 'newtrade'
+            
+            MDFillRoundFlatButton:
+                pos_hint:{"center_x":0.5}
+                text: 'Ongoing Trades'
+            
+            MDFillRoundFlatButton:
+                pos_hint:{"center_x":0.5}
+                text: 'New Offers'
+
+<SearchPage>
+    
+    name: 'search'
+
+    MDBoxLayout:
+        orientation: 'vertical'
+        spacing: dp(10)
+        padding: dp(20)
+
+        MDBoxLayout:
+            adaptive_height: True
+
+            MDIconButton:
+                icon: 'magnify'
+
+            MDTextField:
+                id: search_field
+                hint_text: 'Search'
+                on_text: root.set_list_items(self.text, True)
+
+        RecycleView:
+            id: rv
+            key_viewclass: 'viewclass'
+            key_size: 'height'
+            
+            RecycleBoxLayout:
+                padding: dp(10)
+                default_size: None, dp(48)
+                default_size_hint: 1, None
+                size_hint_y: None
+                height: self.minimum_height
+                orientation: 'vertical'
+
+<NewTradePage>
+    
+    name:'newtrade'
+
+    MDGridLayout:
+        cols:1
+        rows:2
+        padding: 25
+        
+        MDLabel:
+            text:'New Trade'
+            font_style: 'H3'
+            halign: 'center'
+            size_hint_y: 0.1
+
+        MDGridLayout:
+            size_hint_y: 0.9
+            padding: 20
+            cols:1
+            rows:3
+
+            MDGridLayout:
+                cols: 3
+                rows: 2
+
+                MDLabel:
+                    text:'OFFER'
+
+                MDLabel:
+                    #items search
+                
+                MDLabel:
+                    #textfield quantity
+                
+                MDLabel:
+                    text:'FOR'
+
+                MDLabel:
+                    #items search
+
+                MDLabel:
+                    #textfield quantity
+
+            MDGridLayout:
+                cols:2
+                rows:5
+                    
+                MDLabel:
+                    text: 'TRADE METHOD'
+
+                MDLabel:
+                    #Zone or Fam trade switch
+
+                MDLabel:
+                    text: 'NEGOTIABLE?'
+
+                MDLabel:
+                    #SWITCH
+
+                MDLabel:
+                    #TRADE ID
+            MDFillRoundFlatButton:
+                text:'Back'
+                pos_hint:{"center_x":0.5}
+                on_press: app.root.current = 'home'
+
