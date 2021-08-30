@@ -3,6 +3,7 @@ ScreenManagement:
     RegisterPage:
     HomePage:
     SearchPage:
+    NewTradePage:
 
 <LoginPage>
     name: 'login'
@@ -53,7 +54,8 @@ ScreenManagement:
             pos_hint:{"center_x":0.5}
             #temp
             on_press: app.root.current = 'home'
-
+            
+            
 <RegisterPage>
     name:"register"
     MDCard:
@@ -118,7 +120,8 @@ ScreenManagement:
             font_style: 'H3'
             halign: 'center'
             size_hint_y: 0.1
-        
+              
+
         MDBoxLayout:
             spacing: 90
             padding:20
@@ -128,10 +131,12 @@ ScreenManagement:
             MDFillRoundFlatButton:
                 pos_hint:{"center_x":0.5}
                 text: 'Search'
-            
+                on_press: app.root.current = 'search'
+
             MDFillRoundFlatButton:
                 pos_hint:{"center_x":0.5}
                 text: 'Register-New Trade'
+                on_press: app.root.current = 'newtrade'
             
             MDFillRoundFlatButton:
                 pos_hint:{"center_x":0.5}
@@ -140,3 +145,103 @@ ScreenManagement:
             MDFillRoundFlatButton:
                 pos_hint:{"center_x":0.5}
                 text: 'New Offers'
+
+<SearchPage>
+    
+    name: 'search'
+
+    MDBoxLayout:
+        orientation: 'vertical'
+        spacing: dp(10)
+        padding: dp(20)
+
+        MDBoxLayout:
+            adaptive_height: True
+
+            MDIconButton:
+                icon: 'magnify'
+
+            MDTextField:
+                id: search_field
+                hint_text: 'Search'
+                on_text: root.set_list_items(self.text, True)
+
+        RecycleView:
+            id: rv
+            key_viewclass: 'viewclass'
+            key_size: 'height'
+            
+            RecycleBoxLayout:
+                padding: dp(10)
+                default_size: None, dp(48)
+                default_size_hint: 1, None
+                size_hint_y: None
+                height: self.minimum_height
+                orientation: 'vertical'
+
+<NewTradePage>
+    
+    name:'newtrade'
+
+    MDGridLayout:
+        cols:1
+        rows:2
+        padding: 25
+        
+        MDLabel:
+            text:'New Trade'
+            font_style: 'H3'
+            halign: 'center'
+            size_hint_y: 0.1
+
+        MDGridLayout:
+            size_hint_y: 0.9
+            padding: 20
+            cols:1
+            rows:3
+
+            MDGridLayout:
+                cols: 3
+                rows: 2
+
+                MDLabel:
+                    text:'OFFER'
+
+                MDLabel:
+                    #items search
+                
+                MDLabel:
+                    #textfield quantity
+                
+                MDLabel:
+                    text:'FOR'
+
+                MDLabel:
+                    #items search
+
+                MDLabel:
+                    #textfield quantity
+
+            MDGridLayout:
+                cols:2
+                rows:5
+                    
+                MDLabel:
+                    text: 'TRADE METHOD'
+
+                MDLabel:
+                    #Zone or Fam trade switch
+
+                MDLabel:
+                    text: 'NEGOTIABLE?'
+
+                MDLabel:
+                    #SWITCH
+
+                MDLabel:
+                    #TRADE ID
+            MDFillRoundFlatButton:
+                text:'Back'
+                pos_hint:{"center_x":0.5}
+                on_press: app.root.current = 'home'
+

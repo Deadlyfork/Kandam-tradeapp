@@ -40,7 +40,7 @@ Builder.load_string(
             id: rv
             key_viewclass: 'viewclass'
             key_size: 'height'
-
+            
             RecycleBoxLayout:
                 padding: dp(10)
                 default_size: None, dp(48)
@@ -65,9 +65,9 @@ class PreviousMDIcons(Screen):
             self.ids.rv.data.append(
                 {
                     "viewclass": "CustomOneLineIconListItem",
-                    "icon": name_icon,
+                    #"icon": name_icon,
                     "text": name_icon,
-                    "callback": lambda x: x,
+                    #"callback": lambda x: x,
                 }
             )
 
