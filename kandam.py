@@ -48,8 +48,8 @@ class ScreenManagement(ScreenManager):
 
 class Kandam(MDApp):
     def build(self):
-        self.theme_cls.theme_style = "Light"
-        self.theme_cls.primary_palette = 'BlueGray'
+        self.theme_cls.theme_style = "Dark"
+        self.theme_cls.primary_palette = 'Pink'
         return Builder.load_file("kandam_builder.kv")
 
 
