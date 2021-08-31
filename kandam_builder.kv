@@ -54,8 +54,7 @@ ScreenManagement:
             pos_hint:{"center_x":0.5}
             #temp
             on_press: app.root.current = 'home'
-            
-            
+                       
 <RegisterPage>
     name:"register"
     MDCard:
@@ -165,6 +164,11 @@ ScreenManagement:
                 id: search_field
                 hint_text: 'Search'
                 on_text: root.set_list_items(self.text, True)
+
+            MDFillRoundFlatButton:
+                text:'Back'
+                pos_hint:{"x":0.5,'y':0.3}
+                on_press: app.root.current = 'home'
 
         RecycleView:
             id: rv

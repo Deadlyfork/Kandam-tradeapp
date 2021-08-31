@@ -19,8 +19,6 @@ class SearchPage(MDScreen):
                 }
             )
 
-
-
         self.ids.rv.data = []
 
         items_names = list(data_sql.items_names())
@@ -48,8 +46,8 @@ class ScreenManagement(ScreenManager):
 
 class Kandam(MDApp):
     def build(self):
-        self.theme_cls.theme_style = "Light"
-        self.theme_cls.primary_palette = 'BlueGray'
+        self.theme_cls.theme_style = "Dark"
+        self.theme_cls.primary_palette = 'Indigo'
         return Builder.load_file("kandam_builder.kv")
 
 

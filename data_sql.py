@@ -49,4 +49,4 @@ def items_names():
     return items_names
 
 if __name__ == "__main__" :
-    items_names()
+    password('Rom')
