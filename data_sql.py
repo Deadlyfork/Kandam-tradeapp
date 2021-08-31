@@ -35,7 +35,7 @@ class MySQLDataFetch:
 
 
         with conn.cursor() as c:
-            c.execute("SELECT %s FROM %s WHERE %s = %s;" %(self.item_for_fetch,self.table_name,self.where_1,self.where_2))
+            c.execute("SELECT %s FROM %s WHERE %s = '%s';" %(self.item_for_fetch,self.table_name,self.where_1,self.where_2))
             output = c.fetchall()
             return output
         
@@ -49,4 +49,4 @@ def items_names():
     return items_names
 
 if __name__ == "__main__" :
-    password('Rom')
+    print(password('JDFF'))
