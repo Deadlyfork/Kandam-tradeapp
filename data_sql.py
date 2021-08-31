@@ -36,7 +36,7 @@ class MySQLDataFetch:
 
         with conn.cursor() as c:
             c.execute("SELECT %s FROM %s WHERE %s = '%s';" %(self.item_for_fetch,self.table_name,self.where_1,self.where_2))
-            output = c.fetchall()
+            output = sum(c.fetchall(),())
             return output
         
         conn.close()
