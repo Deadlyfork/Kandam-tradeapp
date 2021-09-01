@@ -52,9 +52,9 @@ def register(username,gamename,email,password):
                     gamename,
                     email,
                     password
-                    )
                 )
-    conn.commit()
+            )
+        conn.commit()
 
 def password(username):
     password = MySQLDataFetch(c_name='UserPassword',t_name='User',w_1='UserName',w_2=username).fetch_item()
