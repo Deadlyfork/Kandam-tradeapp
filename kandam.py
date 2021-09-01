@@ -35,7 +35,13 @@ class HomePage(MDScreen):
     pass
 
 class RegisterPage(MDScreen):
-    pass
+    def register(self):
+        username = self.ids.uname.text  
+        gamename = self.ids.gname.text  
+        useremail = self.ids.email.text
+        password = self.ids.upass.text
+
+        data_sql.register(username,gamename,useremail,password)
 
 class LoginPage(MDScreen):
     pass

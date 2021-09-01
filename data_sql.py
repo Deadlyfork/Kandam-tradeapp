@@ -1,52 +1,68 @@
 import pymysql
 
+conn = pymysql.connect(
+    host='frostborn.cqgqrihjywqc.ap-south-1.rds.amazonaws.com',
+    user='romanti', 
+    password = "FBdb5500",
+    db='frostborndb',
+    )
 
 class MySQLDataFetch:
-    def __init__(self, item_for_fetch, table_name, where_1, where_2):
-        self.item_for_fetch = item_for_fetch
-        self.table_name = table_name
-        self.where_1 = where_1
-        self.where_2 = where_2
+    def __init__(self, **kwargs):
+        self.__dict__.update(kwargs)
 
     def fetch_column(self):
-        conn = pymysql.connect(
-            host='frostborn.cqgqrihjywqc.ap-south-1.rds.amazonaws.com',
-            user='romanti', 
-            password = "FBdb5500",
-            db='frostborndb',
-            )
-        
-        
-        with conn.cursor() as c:
-            c.execute("SELECT %s FROM %s;" %(self.item_for_fetch,self.table_name))
-            output = sum(c.fetchall(),())
-            return output
-
-        conn.close()
+        with conn:
+            with conn.cursor() as c:
+                c.execute(
+                    "SELECT %s FROM %s;"
+                    %(self.c_name,self.t_name)
+                    )
+                
+                output = sum(c.fetchall(),())
+                return output
 
     def fetch_item(self):
-        conn = pymysql.connect(
-            host='frostborn.cqgqrihjywqc.ap-south-1.rds.amazonaws.com',
-            user='romanti', 
-            password = "FBdb5500",
-            db='frostborndb',
-            )
-        
+        with conn:
+            with conn.cursor() as c:
+                c.execute(
+                    "SELECT %s FROM %s WHERE %s = '%s';" 
+                    %(self.c_name,self.t_name,self.w_1,self.w_2)
+                    )
+                
+                output = sum(c.fetchall(),())
+                return output
 
+class MySQLDataInsert:
+    def __init__(self, **kwargs):
+        self.__dict__.update(kwargs)
 
+def register(username,gamename,email,password):
+    with conn:
         with conn.cursor() as c:
-            c.execute("SELECT %s FROM %s WHERE %s = '%s';" %(self.item_for_fetch,self.table_name,self.where_1,self.where_2))
-            output = sum(c.fetchall(),())
-            return output
-        
-        conn.close()
+            c.execute(
+                "INSERT INTO %s (%s,%s,%s,%s)VALUES ('%s', '%s', '%s', '%s');"
+                %(
+                    'User',
+                    'UserName',
+                    'GameName',
+                    'Email',
+                    'UserPassword',
+                    username,
+                    gamename,
+                    email,
+                    password
+                    )
+                )
+    conn.commit()
 
 def password(username):
-    password = MySQLDataFetch('UserPassword','User', 'UserName', username).fetch_item()
+    password = MySQLDataFetch(c_name='UserPassword',t_name='User',w_1='UserName',w_2=username).fetch_item()
     return password
+
 def items_names():
-    items_names = MySQLDataFetch('Itemname','Items','','').fetch_column()
+    items_names = MySQLDataFetch(c_name='Itemname',t_name='Items').fetch_column()
     return items_names
 
 if __name__ == "__main__" :
-    print(password('JDFF'))
+    register('s','s','c','c')

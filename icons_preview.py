@@ -65,9 +65,9 @@ class PreviousMDIcons(Screen):
             self.ids.rv.data.append(
                 {
                     "viewclass": "CustomOneLineIconListItem",
-                    #"icon": name_icon,
+                    "icon": name_icon,
                     "text": name_icon,
-                    #"callback": lambda x: x,
+                    "callback": lambda x: x,
                 }
             )
 

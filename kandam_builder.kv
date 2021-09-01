@@ -62,7 +62,7 @@ ScreenManagement:
         padding: 25
         spacing: 20
         size_hint: None, None
-        size: 300, 420
+        size: 300, 490
         pos_hint: {"center_x": .5, "center_y": .5}
         
         MDLabel:
@@ -76,6 +76,7 @@ ScreenManagement:
             height: 1
 
         MDTextField:
+            id:uname
             icon_right: "account-circle-outline"
             hint_text: "Username"
             required: True
@@ -84,14 +85,25 @@ ScreenManagement:
             adaptive_height: True
 
         MDTextField:
+            id:gname
             icon_right: "gamepad-variant-outline"
             hint_text: "IGN"
             required: True
             helper_text_mode: "on_error"
             helper_text: "Required"
             adaptive_height: True
+
+        MDTextField:
+            id:email
+            icon_right: "email-variant"
+            hint_text: "Email"
+            required: True
+            helper_text_mode: "on_error"
+            helper_text: "Required"
+            adaptive_height: True
        
         MDTextField:
+            id:upass
             icon_right: "onepassword"
             hint_text: "Password"
             required: True
@@ -103,6 +115,7 @@ ScreenManagement:
         MDFillRoundFlatButton:
             text: "Submit"
             pos_hint:{"center_x":0.5}
+            on_press: root.register()
             on_press: app.root.current = 'login'
 
 <HomePage>
