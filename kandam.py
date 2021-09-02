@@ -4,11 +4,13 @@ from kivymd.uix.screen import MDScreen
 from kivymd.app import MDApp
 import data_sql
 
-class NewTradePage(MDScreen):
+class NewOfferPage(MDScreen):
     pass
 
 class SearchPage(MDScreen):
-    
+    def __init__(self, **kwargs):
+        super().__init__(self, **kwargs)
+
     def set_list_items(self, text="", search=False):
 
         def add_item(name_item):

@@ -65,4 +65,4 @@ def items_names():
     return items_names
 
 if __name__ == "__main__" :
-    register('s','s','c','c')
+    pass
