@@ -1,16 +1,27 @@
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.uix.recycleview import RecycleView
+from kivy.uix.recycleboxlayout import RecycleBoxLayout
 from kivymd.uix.screen import MDScreen
+from kivymd.uix.button import MDFillRoundFlatButton
+from kivymd.uix.button import MDIconButton
+from kivymd.uix.textfield import MDTextField
+from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.app import MDApp
 import data_sql
 
-class NewOfferPage(MDScreen):
+class NewOfferPage(MDScreen,):
     pass
 
 class SearchPage(MDScreen):
     def __init__(self, **kwargs):
-        super().__init__(self, **kwargs)
+        super().__init__(**kwargs)
 
+
+
+
+
+'''
     def set_list_items(self, text="", search=False):
 
         def add_item(name_item):
@@ -31,7 +42,7 @@ class SearchPage(MDScreen):
                     add_item(name_item)
             else:
                 add_item(name_item)
-
+'''
 
 class HomePage(MDScreen):
     pass
@@ -46,14 +57,26 @@ class RegisterPage(MDScreen):
         data_sql.register(username,gamename,useremail,password)
 
 class LoginPage(MDScreen):
-    pass
+    def verify_pass(self):
+        loginuname = str(self.ids.unamelogin.text)
+        loginpass = str(self.ids.passlogin.text)
+
+        password = ''.join(data_sql.password(loginuname))
+
+        try:
+            if password==loginpass:
+                self.manager.current = 'home'
+        except:
+            self.manager.current = 'login'
 
 class ScreenManagement(ScreenManager):
-    pass
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
 
 
 class Kandam(MDApp):
     def build(self):
+        ScreenManagement().add_widget(SearchPage(name='menu'))
         self.theme_cls.theme_style = "Dark"
         self.theme_cls.primary_palette = 'Indigo'
         return Builder.load_file("kandam_builder.kv")

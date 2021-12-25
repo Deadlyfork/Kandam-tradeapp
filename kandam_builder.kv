@@ -2,8 +2,7 @@ ScreenManagement:
     LoginPage:
     RegisterPage:
     HomePage:
-    SearchPage:
-    NewTradePage:
+    NewOfferPage:
 
 <LoginPage>
     name: 'login'
@@ -32,7 +31,7 @@ ScreenManagement:
             height: 1
         
         MDTextField:
-            id:username
+            id:unamelogin
             icon_right: "account-circle-outline"
             hint_text: "Username"
             required: True
@@ -41,6 +40,7 @@ ScreenManagement:
             adaptive_height: True
        
         MDTextField:
+            id:passlogin
             icon_right: "onepassword"
             hint_text: "Password"
             required: True
@@ -52,8 +52,7 @@ ScreenManagement:
         MDFillRoundFlatButton:
             text: "Sign-in"
             pos_hint:{"center_x":0.5}
-            #temp
-            on_press: app.root.current = 'home'
+            on_press: root.verify_pass()
                        
 <RegisterPage>
     name:"register"
@@ -157,44 +156,6 @@ ScreenManagement:
             MDFillRoundFlatButton:
                 pos_hint:{"center_x":0.5}
                 text: 'New Offers'
-
-<SearchPage>
-    
-    name: 'search'
-
-    MDBoxLayout:
-        orientation: 'vertical'
-        spacing: dp(10)
-        padding: dp(20)
-
-        MDBoxLayout:
-            adaptive_height: True
-
-            MDIconButton:
-                icon: 'magnify'
-
-            MDTextField:
-                id: search_field
-                hint_text: 'Search'
-                on_text: root.set_list_items(self.text, True)
-
-            MDFillRoundFlatButton:
-                text:'Back'
-                pos_hint:{"x":0.5,'y':0.3}
-                on_press: app.root.current = 'home'
-
-        RecycleView:
-            id: rv
-            key_viewclass: 'viewclass'
-            key_size: 'height'
-            
-            RecycleBoxLayout:
-                padding: dp(10)
-                default_size: None, dp(48)
-                default_size_hint: 1, None
-                size_hint_y: None
-                height: self.minimum_height
-                orientation: 'vertical'
 
 <NewOfferPage>
     
