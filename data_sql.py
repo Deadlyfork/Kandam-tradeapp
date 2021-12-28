@@ -1,10 +1,10 @@
 import pymysql
 
 conn = pymysql.connect(
-    host='frostborn.cqgqrihjywqc.ap-south-1.rds.amazonaws.com',
-    user='romanti', 
-    password = "FBdb5500",
-    db='frostborndb',
+    host='',
+    user='', 
+    password = "",
+    db='',
     )
 
 class MySQLDataFetch:
