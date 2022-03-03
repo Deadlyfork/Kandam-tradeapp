@@ -9,12 +9,7 @@ class MySQLDataFetch:
         self.where_2 = where_2
 
     def fetch_column(self):
-        conn = pymysql.connect(
-            host='frostborn.cqgqrihjywqc.ap-south-1.rds.amazonaws.com',
-            user='romanti', 
-            password = "FBdb5500",
-            db='frostborndb',
-            )
+
         
         
         with conn.cursor() as c:
@@ -25,12 +20,7 @@ class MySQLDataFetch:
         conn.close()
 
     def fetch_item(self):
-        conn = pymysql.connect(
-            host='frostborn.cqgqrihjywqc.ap-south-1.rds.amazonaws.com',
-            user='romanti', 
-            password = "FBdb5500",
-            db='frostborndb',
-            )
+        
         
 
 
