@@ -7,11 +7,70 @@ from kivymd.uix.button import MDFillRoundFlatButton
 from kivymd.uix.button import MDIconButton
 from kivymd.uix.textfield import MDTextField
 from kivymd.uix.boxlayout import MDBoxLayout
+from kivymd.uix.label import MDLabel
 from kivymd.app import MDApp
 import data_sql
 
+
+class RegisterPage(MDScreen):
+    def register(self):
+        username = self.ids.uname.text  
+        gamename = self.ids.gname.text  
+        useremail = self.ids.email.text
+        password = self.ids.upass.text
+
+        data_sql.register(username,gamename,useremail,password)
+
+class LoginPage(MDScreen):
+    def verify_pass(self):
+        loginuname = str(self.ids.unamelogin.text)
+        loginpass = str(self.ids.passlogin.text)
+
+        password = ''.join(data_sql.password(loginuname))
+
+        if password=='':
+            self.manager.current = 'login'
+        elif password==loginpass:
+            self.manager.current = 'home'
+        else:
+            self.manager.current = 'login'
+
 class NewOfferPage(MDScreen,):
     pass
+
+
+class HomePage(MDScreen):
+    pass
+
+
+class ScreenManagement(ScreenManager):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+
+class Kandam(MDApp):
+    def build(self):
+        
+        self.theme_cls.theme_style = "Dark"
+        self.theme_cls.primary_palette = 'Indigo'
+        return Builder.load_file("kandam_builder.kv")
+
+
+if __name__ == '__main__':
+    Kandam().run()
+
+
+
+
+
+
+
+'''
+
+
+class Var(MDScreen):
+    pass
+
 
 class SearchPage(MDScreen):
     def __init__(self, **kwargs):
@@ -19,9 +78,6 @@ class SearchPage(MDScreen):
 
 
 
-
-
-'''
     def set_list_items(self, text="", search=False):
 
         def add_item(name_item):
@@ -43,44 +99,4 @@ class SearchPage(MDScreen):
             else:
                 add_item(name_item)
 '''
-
-class HomePage(MDScreen):
-    pass
-
-class RegisterPage(MDScreen):
-    def register(self):
-        username = self.ids.uname.text  
-        gamename = self.ids.gname.text  
-        useremail = self.ids.email.text
-        password = self.ids.upass.text
-
-        data_sql.register(username,gamename,useremail,password)
-
-class LoginPage(MDScreen):
-    def verify_pass(self):
-        loginuname = str(self.ids.unamelogin.text)
-        loginpass = str(self.ids.passlogin.text)
-
-        password = ''.join(data_sql.password(loginuname))
-
-        try:
-            if password==loginpass:
-                self.manager.current = 'home'
-        except:
-            self.manager.current = 'login'
-
-class ScreenManagement(ScreenManager):
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-
-
-class Kandam(MDApp):
-    def build(self):
-        ScreenManagement().add_widget(SearchPage(name='menu'))
-        self.theme_cls.theme_style = "Dark"
-        self.theme_cls.primary_palette = 'Indigo'
-        return Builder.load_file("kandam_builder.kv")
-
-
-if __name__ == '__main__':
-    Kandam().run()
+        #ScreenManagement().add_widget(SearchPage(name='menu'))

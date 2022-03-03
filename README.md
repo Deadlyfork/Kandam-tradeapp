@@ -1,2 +1,2 @@
 # Kandam-tradeapp
-A prototype of market/trading platform for FROSTBORN the game wrote using Kivy.
+A prototype of market/trading platform wrote using Kivy.

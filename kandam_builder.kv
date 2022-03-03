@@ -6,12 +6,13 @@ ScreenManagement:
 
 <LoginPage>
     name: 'login'
+
     MDTextButton:
         text:'Sign-up instead?'
         font_style: 'Button'
         pos_hint:{'top': 0.95,'right':0.95}
         on_press: app.root.current = "register"
-
+    
     MDCard:
         orientation: 'vertical'
         padding: 30
@@ -142,7 +143,7 @@ ScreenManagement:
             MDFillRoundFlatButton:
                 pos_hint:{"center_x":0.5}
                 text: 'Search'
-                on_press: app.root.current = 'search'
+                on_press: app.root.current = 'menu'
 
             MDFillRoundFlatButton:
                 pos_hint:{"center_x":0.5}
@@ -218,8 +219,8 @@ ScreenManagement:
 
                 MDLabel:
                     #TRADE ID
+
             MDFillRoundFlatButton:
                 text:'Back'
                 pos_hint:{"center_x":0.5}
                 on_press: app.root.current = 'home'
-

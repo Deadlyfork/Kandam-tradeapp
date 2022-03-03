@@ -1,16 +1,76 @@
-import data_sql
+from kivy.lang import Builder
+from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.uix.recycleview import RecycleView
+from kivy.uix.recycleboxlayout import RecycleBoxLayout
+from kivymd.uix.screen import MDScreen
+from kivymd.uix.button import MDFillRoundFlatButton
+from kivymd.uix.button import MDIconButton
+from kivymd.uix.textfield import MDTextField
+from kivymd.uix.boxlayout import MDBoxLayout
+from kivymd.uix.label import MDLabel
+from kivymd.uix.toolbar import MDToolbar
+from kivy.utils import get_color_from_hex
+from kivymd.app import MDApp
 
 
 
-temp = ''.join(data_sql.password('testuname'))
-a = 'testpass'
 
-if temp == a:
-    print('af')
+
+class Var(MDScreen):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        layout = MDBoxLayout(orientation='vertical')
+        label = MDLabel()
+        label1 = MDToolbar(title='Woor')
+
+        layout.add_widget(label1)
+        layout.add_widget(label)
+        self.add_widget(layout)
+
+
+
+class Kandam(MDApp):
+    def build(self):
+        
+        self.screen_manager = ScreenManager()
+        
+        self.var = Var()
+        
+
+        screen = MDScreen()
+        screen.add_widget(self.var)
+        self.screen_manager.add_widget(screen)
+
+
+        self.theme_cls.theme_style = "Dark"
+        self.theme_cls.primary_palette = 'Indigo'
+
+        return self.screen_manager
+
+
+
+
+if __name__ == '__main__':
+    Kandam().run()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 '''
+
 import kivy
 kivy.require('2.0.0')
 
@@ -130,8 +190,8 @@ class kandam(App):
 if __name__ == '__main__':
     trade_app = kandam()
     trade_app.run()
-'''
-'''
+
+
 <SearchPage>
     
     name: 'search'

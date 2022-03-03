@@ -1,11 +1,6 @@
 import pymysql
 
-conn = pymysql.connect(
-    host='',
-    user='', 
-    password = "",
-    db='',
-    )
+
 
 class MySQLDataFetch:
     def __init__(self, **kwargs):
@@ -65,4 +60,6 @@ def items_names():
     return items_names
 
 if __name__ == "__main__" :
-    pass
+    loginuname = 'rom'
+    password = ''.join(password(loginuname))
+    print(password)
